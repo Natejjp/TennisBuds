@@ -1,8 +1,7 @@
 import React from 'react'
 import './custom.scss'
+import { SignUp } from './pages/SignUp'
 
 export function App() {
-  return (
-    <div className="d-flex justify-content-center display-2">Hello, World!</div>
-  )
+  return <SignUp />
 }

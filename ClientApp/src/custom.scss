@@ -10,3 +10,81 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+//Search Page
+ul {
+  list-style: none;
+}
+.header {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+
+.rightHeader {
+  display: flex;
+}
+
+.containerSearch {
+  padding: 0 1rem;
+}
+
+.playerResults {
+  border: 1px solid black;
+}
+
+.playerResults li {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+//Profile Page
+.containerProfile {
+  padding: 0 0.5rem;
+  margin: 0.5rem;
+}
+
+.profilePic {
+  display: flex;
+  justify-content: center;
+}
+
+.profileStats {
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+.profileStats li {
+  padding: 0.5rem;
+}
+
+.profileMatches {
+  border: 1px solid black;
+}
+
+.profileMatches li {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+//Sign In
+.signInContainer {
+  padding: 0 0.5rem;
+  margin: 0.5rem;
+}
+label {
+  margin-right: 0.5rem;
+}
+
+//Sign Up
+.signUpContainer {
+  padding: 0 0.5rem;
+  margin: 0.5rem;
+}
