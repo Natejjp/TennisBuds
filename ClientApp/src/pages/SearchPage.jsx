@@ -54,7 +54,7 @@ export function SearchPage() {
         </form>
       </main>
 
-      <body className="containerSearch">
+      <section className="containerSearch">
         <ul className="playerResults">
           {players.map((player) => (
             <li key={player.id}>
@@ -66,7 +66,7 @@ export function SearchPage() {
             </li>
           ))}
         </ul>
-      </body>
+      </section>
 
       <footer>Copyrighted so don't even</footer>
     </>

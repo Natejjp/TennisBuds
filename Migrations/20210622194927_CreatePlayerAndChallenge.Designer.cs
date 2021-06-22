@@ -10,8 +10,8 @@ using TennisBuds.Models;
 namespace TennisBuds.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210622191035_CreateChallenge")]
-    partial class CreateChallenge
+    [Migration("20210622194927_CreatePlayerAndChallenge")]
+    partial class CreatePlayerAndChallenge
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,9 @@ namespace TennisBuds.Migrations
                     b.Property<string>("Format")
                         .HasColumnType("text");
 
+                    b.Property<string>("Match")
+                        .HasColumnType("text");
+
                     b.Property<int>("PlayerId")
                         .HasColumnType("integer");
 
@@ -47,6 +50,8 @@ namespace TennisBuds.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("Challenges");
                 });
@@ -79,6 +84,22 @@ namespace TennisBuds.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("TennisBuds.Models.Challenge", b =>
+                {
+                    b.HasOne("TennisBuds.Models.Player", "Player")
+                        .WithMany("Challenges")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("TennisBuds.Models.Player", b =>
+                {
+                    b.Navigation("Challenges");
                 });
 #pragma warning restore 612, 618
         }

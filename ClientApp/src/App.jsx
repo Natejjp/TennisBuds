@@ -1,7 +1,7 @@
 import React from 'react'
 import './custom.scss'
-import { Challenge } from './pages/Challenge'
+import { SearchPage } from './pages/SearchPage'
 
 export function App() {
-  return <Challenge />
+  return <SearchPage />
 }
