@@ -4,3 +4,6 @@ INSERT INTO "Players" ("Name", "Email", "Telephone", "Court", "Zip", "Rating") V
 INSERT INTO "Players" ("Name", "Email", "Telephone", "Court", "Zip", "Rating") VALUES ('Carl Clark', 'ccc@gmail.com', '333-333-3333', 'Fossil Park', 33712, 5.0);
 INSERT INTO "Players" ("Name", "Email", "Telephone", "Court", "Zip", "Rating") VALUES ('Dennis Dent', 'ddd@gmail.com', '444-444-4444', 'Lakeside Parl', 33713, 3.5);
 
+
+INSERT INTO "Challenges" ("PlayerId", "Format", "Date", "Time", "Court") VALUES (1, 'Doubles', '2021-07-01', '7:00', 'Fossil Park');
+INSERT INTO "Challenges" ("PlayerId", "Format", "Date", "Time", "Court") VALUES (1, 'Singles', '2021-08-01', '18:00', 'Lakeside Park');

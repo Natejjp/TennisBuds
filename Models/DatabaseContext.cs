@@ -15,7 +15,7 @@ namespace TennisBuds.Models
 
         // Add database tables here
         public DbSet<Player> Players { get; set; }
-
+        public DbSet<Challenge> Challenges { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

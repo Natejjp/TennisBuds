@@ -1,7 +1,7 @@
 import React from 'react'
 import './custom.scss'
-import { SignUp } from './pages/SignUp'
+import { Challenge } from './pages/Challenge'
 
 export function App() {
-  return <SignUp />
+  return <Challenge />
 }

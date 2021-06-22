@@ -42,6 +42,9 @@ export function SignUp() {
             <input type="text" name="rating" placeholder="1.0 - 7.0" />
           </p>
           <p>
+            <input type="file" />
+          </p>
+          <p>
             <input type="submit" value="Submit" />
           </p>
         </form>
