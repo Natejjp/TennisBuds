@@ -31,18 +31,19 @@ namespace TennisBuds.Controllers
         // Returns a list of all your Players
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers(string search)
+        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers(int search)
         {
             // Uses the database context in `_context` to request all of the Players, sort
             // them by row id and return them as a JSON array.
             // return await _context.Players.OrderBy(row => row.Id).ToListAsync();
+
             if (search == null)
             {
                 return await _context.Players.ToListAsync();
             }
             else
             {
-                return await _context.Players.Where(player => player.Name.Contains(search)).ToListAsync();
+                return await _context.Players.Where(player => player.Zip == (search)).ToListAsync();
             }
 
         }

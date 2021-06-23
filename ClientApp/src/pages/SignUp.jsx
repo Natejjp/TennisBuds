@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export function SignUp() {
   return (
@@ -7,9 +8,9 @@ export function SignUp() {
         <ul className="header">
           <li className="leftHeader">
             <nav>
-              <a href="/">
+              <Link to="/">
                 <i className="homeTitle"></i> Tennis Buds
-              </a>
+              </Link>
             </nav>
           </li>
           <li className="rightHeader">

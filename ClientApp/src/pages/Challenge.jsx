@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 
 export function Challenge() {
   const [newChallenge, setNewChallenge] = useState({
-    id: 0,
-    'player id': 0,
     match: '',
     format: '',
     date: '',
     time: '',
-    court: '',
+    court: 'Fossil Park',
+    playerId: 1,
   })
 
   function handleChallenge(event) {
@@ -59,14 +58,14 @@ export function Challenge() {
             <input
               type="radio"
               name="match"
-              value={newChallenge.match}
+              value="Singles"
               onChange={handleChallenge}
             />
             <label>Singles</label>
             <input
               type="radio"
               name="match"
-              value={newChallenge.match}
+              value="Double"
               onChange={handleChallenge}
             />
             <label>Doubles</label>
@@ -76,14 +75,14 @@ export function Challenge() {
             <input
               type="radio"
               name="format"
-              value={newChallenge.format}
+              value="3 Sets of 6"
               onChange={handleChallenge}
             />
             <label>3 Sets of 6</label>
             <input
               type="radio"
               name="format"
-              value={newChallenge.format}
+              value="5 Sets of 6"
               onChange={handleChallenge}
             />
             <label>5 Sets of 6</label>
@@ -95,8 +94,6 @@ export function Challenge() {
               name="date"
               id="start"
               value={newChallenge.date}
-              min="2021-01-01"
-              max="2021-12-31"
               onChange={handleChallenge}
             />
           </p>
@@ -104,8 +101,6 @@ export function Challenge() {
             <label>Choose a time:</label>
             <input
               type="time"
-              min="09:00"
-              max="18:00"
               name="time"
               value={newChallenge.time}
               onChange={handleChallenge}
@@ -114,16 +109,16 @@ export function Challenge() {
           </p>
           <p>
             <label>Choose a Court:</label>
-            <select id="courts" name="courts" onChange={handleChallenge}>
+            <select id="court" name="court" onChange={handleChallenge}>
               <optgroup label="St. Pete">
-                <option value={newChallenge.court}>Fossil Park</option>
-                <option value={newChallenge.court}>Lakeside Park</option>
+                <option value="Fossil Park">Fossil Park</option>
+                <option value="Lakeside Park">Lakeside Park</option>
               </optgroup>
               <optgroup label="Tampa">
-                <option value={newChallenge.court}>
+                <option value="Sandra W Freedman Tennis Complex">
                   Sandra W Freedman Tennis Complex
                 </option>
-                <option value={newChallenge.court}>HCC Tennis Center</option>
+                <option value="HCC Tennis Center">HCC Tennis Center</option>
               </optgroup>
             </select>
           </p>

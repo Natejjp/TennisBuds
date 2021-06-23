@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export function SearchPage() {
   const [players, setPlayers] = useState([])
@@ -27,9 +28,9 @@ export function SearchPage() {
         <ul className="header">
           <li className="leftHeader">
             <nav>
-              <a href="/">
+              <Link to="/">
                 <i className="homeTitle"></i> Tennis Buds
-              </a>
+              </Link>
             </nav>
           </li>
           <li className="rightHeader">
@@ -50,7 +51,6 @@ export function SearchPage() {
               setSearchPlayer(event.target.value)
             }}
           />
-          <input type="submit" value="Submit" />
         </form>
       </main>
 
@@ -62,7 +62,9 @@ export function SearchPage() {
               <p>Zip: {player.zip}</p>
               <p>Rating: {player.rating}</p>
               <p>HomeCourt: {player.court}</p>
-              <button>Challenge</button>
+              <Link to="/new">
+                <button>Challenge</button>
+              </Link>
             </li>
           ))}
         </ul>
