@@ -41,7 +41,7 @@ namespace TennisBuds.Controllers
             }
             else
             {
-                return await _context.Users.Where(player => player.Zip == (search)).ToListAsync();
+                return await _context.Users.Where(user => user.Zip == (search)).ToListAsync();
             }
         }
 

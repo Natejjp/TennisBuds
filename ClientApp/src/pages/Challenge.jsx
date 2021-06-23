@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export function Challenge() {
   const history = useHistory()
@@ -35,24 +35,6 @@ export function Challenge() {
 
   return (
     <>
-      <header>
-        <ul className="header">
-          <li className="leftHeader">
-            <nav>
-              <Link to="/">
-                <i className="homeTitle"></i> Tennis Buds
-              </Link>
-            </nav>
-          </li>
-          <li className="rightHeader">
-            <p>Login</p>
-            <Link to="/profile">
-              <img src="source" alt="Avatar" height="64" width="64" />
-            </Link>
-          </li>
-        </ul>
-      </header>
-
       <main className="challengeContainer">
         <h1>Challenge Betty Benson</h1>
 

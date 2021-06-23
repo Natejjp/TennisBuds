@@ -1,41 +1,61 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 
 export function SignIn() {
+  const [errorMessage, setErrorMessage] = useState()
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  })
+
+  function handleStringFieldChange(event) {
+    const value = event.target.value
+    const fieldName = event.target.name
+
+    const newerUser = { ...user, [fieldName]: value }
+    setUser(newerUser)
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const response = await fetch('/api/Sessions', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(user),
+    })
+    const apiResponse = await response.json()
+    if (apiResponse.status === 400) {
+      setErrorMessage(Object.values(apiResponse.errors).join(' '))
+    } else {
+      window.location.assign('/')
+    }
+  }
+
   return (
     <>
-      <header>
-        <ul className="header">
-          <li className="leftHeader">
-            <nav>
-              <Link to="/">
-                <i className="homeTitle"></i> Tennis Buds
-              </Link>
-            </nav>
-          </li>
-          <li className="rightHeader">
-            <Link to="/signin">
-              <p>Sign In</p>
-            </Link>
-            <Link to="/signup">
-              <p>Sign Up</p>
-            </Link>
-            <Link to="/profile">
-              <img src="source" alt="Avatar" height="64" width="64" />
-            </Link>
-          </li>
-        </ul>
-      </header>
       <main className="signInContainer">
         <h1>Sign In</h1>
-        <form action="#">
+        <form onSubmit={handleSubmit}>
+          {errorMessage ? <p>{errorMessage}</p> : null}
           <p>
             <label>Email</label>
-            <input type="email" name="email" placeholder="Email Address" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={user.email}
+              onChange={handleStringFieldChange}
+            />
           </p>
           <p>
             <label>Password</label>
-            <input type="text" name="password" placeholder="Password" />
+            <input
+              type="text"
+              name="password"
+              placeholder="Password"
+              value={user.password}
+              onChange={handleStringFieldChange}
+            />
           </p>
           <p>
             <input type="submit" name="submit"></input>

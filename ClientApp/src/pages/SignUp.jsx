@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export function SignUp() {
   const history = useHistory()
@@ -39,28 +39,6 @@ export function SignUp() {
 
   return (
     <>
-      <header>
-        <ul className="header">
-          <li className="leftHeader">
-            <nav>
-              <Link to="/">
-                <i className="homeTitle"></i> Tennis Buds
-              </Link>
-            </nav>
-          </li>
-          <li className="rightHeader">
-            <Link to="/signin">
-              <p>Sign In</p>
-            </Link>
-            <Link to="/signup">
-              <p>Sign Up</p>
-            </Link>
-            <Link to="/profile">
-              <img src="source" alt="Avatar" height="64" width="64" />
-            </Link>
-          </li>
-        </ul>
-      </header>
       <main className="signUpContainer">
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>

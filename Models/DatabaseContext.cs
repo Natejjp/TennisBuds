@@ -14,7 +14,7 @@ namespace TennisBuds.Models
         private static bool LOG_SQL_STATEMENTS_IN_DEVELOPMENT = false;
 
         // Add database tables here
-        public DbSet<Player> Players { get; set; }
+
         public DbSet<Challenge> Challenges { get; set; }
         public DbSet<User> Users { get; set; }
 
