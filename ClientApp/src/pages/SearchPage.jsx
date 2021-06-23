@@ -34,7 +34,12 @@ export function SearchPage() {
             </nav>
           </li>
           <li className="rightHeader">
-            <p>Login</p>
+            <Link to="/signin">
+              <p>Sign In</p>
+            </Link>
+            <Link to="/signup">
+              <p>Sign Up</p>
+            </Link>
             <Link to="/profile">
               <img src="source" alt="Avatar" height="64" width="64" />
             </Link>

@@ -4,6 +4,8 @@ import './custom.scss'
 import { Challenge } from './pages/Challenge'
 import { Profile } from './pages/Profile'
 import { SearchPage } from './pages/SearchPage'
+import { SignIn } from './pages/SignIn'
+import { SignUp } from './pages/SignUp'
 
 export function App() {
   return (
@@ -16,6 +18,12 @@ export function App() {
       </Route>
       <Route exact path="/profile">
         <Profile />
+      </Route>
+      <Route exact path="/signup">
+        <SignUp />
+      </Route>
+      <Route exact path="/signin">
+        <SignIn />
       </Route>
     </Switch>
   )
