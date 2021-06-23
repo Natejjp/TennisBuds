@@ -35,7 +35,6 @@ export function SignUp() {
     } else {
       history.push('/')
     }
-    console.log('hi')
   }
 
   return (
@@ -137,6 +136,7 @@ export function SignUp() {
               </optgroup>
             </select>
           </p>
+
           <p>
             <label>Rating:</label>
             <input

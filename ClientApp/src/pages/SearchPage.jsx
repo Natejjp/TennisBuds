@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function SearchPage() {
-  const [players, setPlayers] = useState([])
-  const [searchPlayer, setSearchPlayer] = useState('')
+  const [users, setUsers] = useState([])
+  const [searchUser, setSearchUser] = useState('')
 
   useEffect(
     function () {
-      async function loadPlayers() {
+      async function loadUsers() {
         const url =
-          searchPlayer.length === 0
-            ? 'api/Players'
-            : `api/Players?search=${searchPlayer}`
+          searchUser.length === 0
+            ? 'api/Users'
+            : `api/Users?search=${searchUser}`
         const response = await fetch(url)
         if (response.ok) {
           const json = await response.json()
-          setPlayers(json)
+          setUsers(json)
         }
       }
-      loadPlayers()
+      loadUsers()
     },
-    [searchPlayer]
+    [searchUser]
   )
   return (
     <>
@@ -53,9 +53,9 @@ export function SearchPage() {
           <input
             type="text"
             placeholder="Enter zip code"
-            value={searchPlayer}
+            value={searchUser}
             onChange={function (event) {
-              setSearchPlayer(event.target.value)
+              setSearchUser(event.target.value)
             }}
           />
         </form>
@@ -63,12 +63,12 @@ export function SearchPage() {
 
       <section className="containerSearch">
         <ul className="playerResults">
-          {players.map((player) => (
-            <li key={player.id}>
-              <h2>Name: {player.name}</h2>
-              <p>Zip: {player.zip}</p>
-              <p>Rating: {player.rating}</p>
-              <p>HomeCourt: {player.court}</p>
+          {users.map((user) => (
+            <li key={user.id}>
+              <h2>Name: {user.name}</h2>
+              <p>Zip: {user.zip}</p>
+              <p>Rating: {user.rating}</p>
+              <p>HomeCourt: {user.court}</p>
               <Link to="/new">
                 <button>Challenge</button>
               </Link>
