@@ -10,7 +10,8 @@ export function SignUp() {
     password: '',
     telephone: '',
     zip: '',
-    rating: '',
+    court: 'Fossil Park',
+    rating: 0,
   })
 
   function handleStringFieldChange(event) {
@@ -117,17 +118,34 @@ export function SignUp() {
             />
           </p>
           <p>
-            <label>Rating:</label>
-            <select id="court" name="court" onChange={handleStringFieldChange}>
-              <option value="1.0">1.0</option>
-              <option value="1.5">1.5</option>
-              <option value="2.0">2.0</option>
-              <option value="2.5">2.5</option>
-              <option value="3.0">3.0</option>
-              <option value="3.5">3.5</option>
-              <option value="4.0">4.0</option>
-              <option value="4.5">4.5</option>
+            <label>Choose a Home Court:</label>
+            <select
+              id="court"
+              name="court"
+              value={newUser.court}
+              onChange={handleStringFieldChange}
+            >
+              <optgroup label="St. Pete">
+                <option value="Fossil Park">Fossil Park</option>
+                <option value="Lakeside Park">Lakeside Park</option>
+              </optgroup>
+              <optgroup label="Tampa">
+                <option value="Sandra W Freedman Tennis Complex">
+                  Sandra W Freedman Tennis Complex
+                </option>
+                <option value="HCC Tennis Center">HCC Tennis Center</option>
+              </optgroup>
             </select>
+          </p>
+          <p>
+            <label>Rating:</label>
+            <input
+              type="text"
+              name="rating"
+              placeholder="1.0 - 7.0"
+              value={newUser.rating}
+              onChange={handleStringFieldChange}
+            />
           </p>
           <p>
             <input type="file" />
