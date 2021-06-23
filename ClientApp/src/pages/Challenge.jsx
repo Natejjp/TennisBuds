@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
 export function Challenge() {
+  const history = useHistory()
   const [newChallenge, setNewChallenge] = useState({
     match: '',
     format: '',
@@ -27,7 +29,7 @@ export function Challenge() {
       body: JSON.stringify(newChallenge),
     })
     if (response.ok) {
-      console.log('hello')
+      history.push('/')
     }
   }
 
@@ -37,14 +39,16 @@ export function Challenge() {
         <ul className="header">
           <li className="leftHeader">
             <nav>
-              <a href="/">
+              <Link to="/">
                 <i className="homeTitle"></i> Tennis Buds
-              </a>
+              </Link>
             </nav>
           </li>
           <li className="rightHeader">
             <p>Login</p>
-            <img src="source" alt="Avatar" height="64" width="64" />
+            <Link to="/profile">
+              <img src="source" alt="Avatar" height="64" width="64" />
+            </Link>
           </li>
         </ul>
       </header>

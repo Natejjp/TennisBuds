@@ -35,7 +35,9 @@ export function SearchPage() {
           </li>
           <li className="rightHeader">
             <p>Login</p>
-            <img src="source" alt="Avatar" height="64" width="64" />
+            <Link to="/profile">
+              <img src="source" alt="Avatar" height="64" width="64" />
+            </Link>
           </li>
         </ul>
       </header>
