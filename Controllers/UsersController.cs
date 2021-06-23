@@ -31,11 +31,18 @@ namespace TennisBuds.Controllers
         // Returns a list of all your Users
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers(int search)
         {
             // Uses the database context in `_context` to request all of the Users, sort
             // them by row id and return them as a JSON array.
-            return await _context.Users.OrderBy(row => row.Id).ToListAsync();
+            if (search == null)
+            {
+                return await _context.Users.ToListAsync();
+            }
+            else
+            {
+                return await _context.Users.Where(player => player.Zip == (search)).ToListAsync();
+            }
         }
 
         // GET: api/Users/5
