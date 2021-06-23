@@ -67,7 +67,6 @@ export function SignUp() {
           <p>
             <label>Password:</label>
             <input
-              type="password"
               name="password"
               placeholder="Password"
               value={newUser.password}

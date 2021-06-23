@@ -6,7 +6,7 @@ import { Profile } from './pages/Profile'
 import { SearchPage } from './pages/SearchPage'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
-import { getUser, isLoggedIn, logout } from './auth'
+import { getUser, isLoggedIn } from './auth'
 
 export function App() {
   const user = getUser()
