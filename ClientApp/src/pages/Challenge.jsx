@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
+import { getUser } from '../auth'
 
 export function Challenge() {
   const history = useHistory()
+  const user = getUser()
   const [newChallenge, setNewChallenge] = useState({
     match: '',
     format: '',
@@ -11,6 +13,28 @@ export function Challenge() {
     court: 'Fossil Park',
     playerId: 1,
   })
+  // user_id is the user we are going to be challenging
+  const { user_id } = useParams()
+  const [opponent, setOpponent] = useState({
+    name: '',
+    email: '',
+    password: '',
+    telephone: '',
+    zip: '',
+    court: 'Fossil Park',
+    rating: 0,
+  })
+
+  useState(() => {
+    const fetchOpponent = async () => {
+      const response = await fetch(`/api/Users/${user_id}`)
+      const apiData = await response.json()
+
+      setOpponent(apiData)
+    }
+
+    fetchOpponent()
+  }, [user_id])
 
   function handleChallenge(event) {
     const value = event.target.value
@@ -36,7 +60,9 @@ export function Challenge() {
   return (
     <>
       <main className="challengeContainer">
-        <h1>Challenge Betty Benson</h1>
+        <h1>
+          {user.name} challenges {opponent.name}
+        </h1>
 
         <form action="/" onSubmit={handleSubmit}>
           <p>

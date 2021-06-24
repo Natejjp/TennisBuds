@@ -6,16 +6,14 @@ import { Profile } from './pages/Profile'
 import { SearchPage } from './pages/SearchPage'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
-import { getUser, isLoggedIn, logout } from './auth'
+import { isLoggedIn, logout } from './auth'
 import { HomePage } from './pages/HomePage'
 
 export function App() {
-  const user = getUser()
-
   function handleLogout() {
     logout()
 
-    window.location.assign('/')
+    window.location.assign('/homepage')
   }
 
   return (
@@ -29,7 +27,7 @@ export function App() {
                   <i className="homeTitle"></i> SearchPlayers
                 </Link>
               ) : null}
-              <Link to="/homepage">Home</Link>
+              <Link to="/homepage"> Home</Link>
             </nav>
           </li>
           <li className="rightHeader">
@@ -58,7 +56,7 @@ export function App() {
         <Route exact path="/">
           <SearchPage />
         </Route>
-        <Route exact path="/new">
+        <Route exact path="/new/:user_id">
           <Challenge />
         </Route>
         <Route exact path="/profile">

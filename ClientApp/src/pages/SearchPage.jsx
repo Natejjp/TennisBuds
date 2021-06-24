@@ -22,6 +22,7 @@ export function SearchPage() {
     },
     [searchUser]
   )
+
   return (
     <>
       <main className="containerSearch">
@@ -46,7 +47,7 @@ export function SearchPage() {
               <p>Zip: {user.zip}</p>
               <p>Rating: {user.rating}</p>
               <p>HomeCourt: {user.court}</p>
-              <Link to="/new">
+              <Link to={`/new/${user.id}`}>
                 <button>Challenge</button>
               </Link>
             </li>
