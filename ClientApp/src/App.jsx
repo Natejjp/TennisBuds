@@ -6,16 +6,17 @@ import { Profile } from './pages/Profile'
 import { SearchPage } from './pages/SearchPage'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
-import { getUser, isLoggedIn } from './auth'
+import { getUser, isLoggedIn, logout } from './auth'
+import { HomePage } from './pages/HomePage'
 
 export function App() {
   const user = getUser()
 
-  // function handleLogout() {
-  //   logout()
+  function handleLogout() {
+    logout()
 
-  //   window.location.assign('/')
-  // }
+    window.location.assign('/')
+  }
 
   return (
     <>
@@ -23,9 +24,12 @@ export function App() {
         <ul className="header">
           <li className="leftHeader">
             <nav>
-              <Link to="/">
-                <i className="homeTitle"></i> Tennis Buds
-              </Link>
+              {isLoggedIn() ? (
+                <Link to="/">
+                  <i className="homeTitle"></i> SearchPlayers
+                </Link>
+              ) : null}
+              <Link to="/homepage">Home</Link>
             </nav>
           </li>
           <li className="rightHeader">
@@ -43,6 +47,9 @@ export function App() {
               <Link to="/profile">
                 <img src="source" alt="Avatar" height="64" width="64" />
               </Link>
+            ) : null}
+            {isLoggedIn() ? (
+              <button onClick={handleLogout}> Logout</button>
             ) : null}
           </li>
         </ul>
@@ -62,6 +69,9 @@ export function App() {
         </Route>
         <Route exact path="/signin">
           <SignIn />
+        </Route>
+        <Route exact path="/homepage">
+          <HomePage />
         </Route>
       </Switch>
     </>
