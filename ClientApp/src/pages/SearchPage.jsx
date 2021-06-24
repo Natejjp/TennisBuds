@@ -47,7 +47,7 @@ export function SearchPage() {
               <p>Zip: {user.zip}</p>
               <p>Rating: {user.rating}</p>
               <p>HomeCourt: {user.court}</p>
-              <Link to={`/new/${user.id}`}>
+              <Link to={`/challenge/${user.id}`}>
                 <button>Challenge</button>
               </Link>
             </li>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { getUser } from '../auth'
 
@@ -6,6 +6,7 @@ export function Challenge() {
   const history = useHistory()
   const user = getUser()
   const [newChallenge, setNewChallenge] = useState({
+    opponent: '',
     match: '',
     format: '',
     date: '',
@@ -14,16 +15,23 @@ export function Challenge() {
     userId: `${user.id}`,
   })
   // opponent_id is the user we are going to be challenging
-  const { opponent_id } = useParams()
+  // const { opponent_id } = useParams()
+  // const params = useParams()
+  // const id = params.opponent_id
   const [opponent, setOpponent] = useState({
     name: '',
     email: '',
     password: '',
     telephone: '',
     zip: '',
-    court: 'Fossil Park',
+    court: '',
     rating: 0,
   })
+
+  // useEffect(function () {
+  //   const same = opponent.name
+  //   setNewChallenge({ ...newChallenge, opponent: same })
+  // }, [])
 
   useState(() => {
     const fetchOpponent = async () => {

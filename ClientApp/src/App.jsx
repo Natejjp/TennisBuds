@@ -15,7 +15,6 @@ export function App() {
 
     window.location.assign('/homepage')
   }
-  const user = getUser()
 
   return (
     <>
@@ -57,7 +56,7 @@ export function App() {
         <Route exact path="/">
           <SearchPage />
         </Route>
-        <Route exact path="/new/:opponent_id">
+        <Route exact path="/challenge/:opponent_id">
           <Challenge />
         </Route>
         <Route exact path="/profile">
