@@ -11,10 +11,10 @@ export function Challenge() {
     date: '',
     time: '',
     court: 'Fossil Park',
-    playerId: 1,
+    userId: `${user.id}`,
   })
-  // user_id is the user we are going to be challenging
-  const { user_id } = useParams()
+  // opponent_id is the user we are going to be challenging
+  const { opponent_id } = useParams()
   const [opponent, setOpponent] = useState({
     name: '',
     email: '',
@@ -27,14 +27,14 @@ export function Challenge() {
 
   useState(() => {
     const fetchOpponent = async () => {
-      const response = await fetch(`/api/Users/${user_id}`)
+      const response = await fetch(`/api/Users/${opponent_id}`)
       const apiData = await response.json()
 
       setOpponent(apiData)
     }
 
     fetchOpponent()
-  }, [user_id])
+  }, [opponent_id])
 
   function handleChallenge(event) {
     const value = event.target.value

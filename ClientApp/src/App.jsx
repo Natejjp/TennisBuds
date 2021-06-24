@@ -6,7 +6,7 @@ import { Profile } from './pages/Profile'
 import { SearchPage } from './pages/SearchPage'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
-import { isLoggedIn, logout } from './auth'
+import { getUser, isLoggedIn, logout } from './auth'
 import { HomePage } from './pages/HomePage'
 
 export function App() {
@@ -15,6 +15,7 @@ export function App() {
 
     window.location.assign('/homepage')
   }
+  const user = getUser()
 
   return (
     <>
@@ -56,7 +57,7 @@ export function App() {
         <Route exact path="/">
           <SearchPage />
         </Route>
-        <Route exact path="/new/:user_id">
+        <Route exact path="/new/:opponent_id">
           <Challenge />
         </Route>
         <Route exact path="/profile">

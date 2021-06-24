@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,7 @@ namespace TennisBuds.Models
         public string Court { get; set; }
         public int Zip { get; set; }
         public int Rating { get; set; }
+        public List<Challenge> Challenges { get; set; }
 
         [JsonIgnore]
         public string HashedPassword { get; set; }

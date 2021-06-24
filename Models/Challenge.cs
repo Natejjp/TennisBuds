@@ -11,9 +11,7 @@ namespace TennisBuds.Models
         public string Time { get; set; }
         public string Court { get; set; }
         public DateTime CreatedAt { get; private set; } = DateTime.Now;
-        public int PlayerId { get; set; }
-
-
+        public int UserId { get; set; }
 
     }
 }
