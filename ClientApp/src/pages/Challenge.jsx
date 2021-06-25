@@ -14,35 +14,32 @@ export function Challenge() {
     court: 'Fossil Park',
     userId: `${user.id}`,
   })
-  // opponent_id is the user we are going to be challenging
-  // const { opponent_id } = useParams()
-  // const params = useParams()
-  // const id = params.opponent_id
+
+  const { opponent_id } = useParams()
   const [opponent, setOpponent] = useState({
     name: '',
-    email: '',
-    password: '',
-    telephone: '',
-    zip: '',
-    court: '',
-    rating: 0,
   })
 
-  // useEffect(function () {
-  //   const same = opponent.name
-  //   setNewChallenge({ ...newChallenge, opponent: same })
-  // }, [])
-
-  useState(() => {
-    const fetchOpponent = async () => {
+  //Grabs all opponent data (just need name)
+  useEffect(() => {
+    const fetchOpponentData = async () => {
       const response = await fetch(`/api/Users/${opponent_id}`)
       const apiData = await response.json()
-
       setOpponent(apiData)
     }
 
-    fetchOpponent()
+    fetchOpponentData()
   }, [opponent_id])
+
+  //Puts opponent name into newChallenge once date for challenge is changed
+  useEffect(() => {
+    const fetchOpponentName = async () => {
+      const same = opponent.name
+      setNewChallenge({ ...newChallenge, opponent: same })
+    }
+
+    fetchOpponentName()
+  }, [newChallenge.date])
 
   function handleChallenge(event) {
     const value = event.target.value

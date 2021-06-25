@@ -25,11 +25,18 @@ a {
   text-align: center;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 1rem;
   border: 1px solid black;
   background-color: rgb(183, 214, 251, 0.6);
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
   font-size: large;
+  margin: 0;
+}
+
+.footer {
+  padding: 1rem;
+  border: 1px solid black;
+  background-color: rgb(183, 214, 251, 0.6);
 }
 
 //Search Page
@@ -41,19 +48,36 @@ ul {
   display: flex;
 }
 
+.searchPage {
+  background-color: rgb(196, 87, 81);
+}
+
 .containerSearch {
   padding: 0 1rem;
 }
 
 .playerResults {
-  border: 1px solid black;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // background-repeat: no-repeat;
 }
 
 .playerResults li {
-  border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 50%;
   padding: 0.5rem;
   margin: 0.5rem;
+  height: 250px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url('./images/tennisBall.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 //Profile Page
@@ -90,7 +114,8 @@ ul {
 //Sign In
 .signInContainer {
   padding: 0 0.5rem;
-  margin: 0.5rem;
+  margin: auto;
+  min-height: 100%;
 }
 label {
   margin-right: 0.5rem;
@@ -99,7 +124,7 @@ label {
 //Sign Up
 .signUpContainer {
   padding: 0 0.5rem;
-  margin: 0.5rem;
+  margin: auto;
 }
 
 //Challenge
@@ -109,29 +134,36 @@ label {
 }
 
 //Home Page
+
 .homePage {
-  padding: 1rem;
-  border: 1px solid black;
+  margin-top: 0;
 }
 
 .homeTop {
   display: flex;
   flex-direction: column;
-  padding-bottom: 1rem;
   align-items: center;
   text-align: center;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 30%;
+  background: url('./images/tennis.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  // border: 0.5rem solid white;
 }
 
 .homeTop li {
-  padding: 0.5rem;
+  padding: 2rem;
 }
 
-.homeBottom {
+// .test {
+//   min-height: 60vh;
+// }
+
+.container {
   display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.homeBottom li {
-  padding: 0.5rem;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
 }

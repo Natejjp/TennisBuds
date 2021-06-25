@@ -24,9 +24,9 @@ export function SearchPage() {
   )
 
   return (
-    <>
-      <main className="containerSearch">
-        <h1 className="titleSearch">Tennis Buds</h1>
+    <main className="searchPage">
+      <section className="containerSearch">
+        <h1 className="titleSearch">Zip Tennis</h1>
         <form className="titleSearch">
           <input
             type="text"
@@ -37,12 +37,12 @@ export function SearchPage() {
             }}
           />
         </form>
-      </main>
+      </section>
 
       <section className="containerSearch">
         <ul className="playerResults">
           {users.map((user) => (
-            <li key={user.id}>
+            <li key={user.id} className="playerDetails">
               <h2>Name: {user.name}</h2>
               <p>Zip: {user.zip}</p>
               <p>Rating: {user.rating}</p>
@@ -54,6 +54,6 @@ export function SearchPage() {
           ))}
         </ul>
       </section>
-    </>
+    </main>
   )
 }
