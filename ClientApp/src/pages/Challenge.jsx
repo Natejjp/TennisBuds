@@ -112,6 +112,7 @@ export function Challenge() {
               id="start"
               value={newChallenge.date}
               onChange={handleChallenge}
+              required
             />
           </p>
           <p>

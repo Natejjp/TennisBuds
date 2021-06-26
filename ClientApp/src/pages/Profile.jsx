@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { getUser } from '../auth'
 
 export function Profile() {
   const user = getUser()
 
+  const [challenges, setChallenges] = useState([])
+
+  useEffect(
+    function () {
+      async function loadChallenges() {
+        const response = await fetch(`api/Challenges?filter=${user.id}`)
+        if (response.ok) {
+          const json = await response.json()
+          setChallenges(json)
+        }
+      }
+      loadChallenges()
+    },
+    [challenges]
+  )
+
   return (
     <>
       <main className="containerProfile">
-        <div>
+        <section>
           <ul className="profileStats">
             <li className="profilePic">
               <img src="source" alt="ProfilePic" height="100" width="100" />
@@ -18,27 +35,22 @@ export function Profile() {
             <li>ZipCode Area: {user.zip}</li>
             <button>Profile Settings</button>
           </ul>
-        </div>
-        <div>
+        </section>
+        <section>
           <h1>Latest Matches</h1>
           <ul className="profileMatches">
-            <li>
-              <p>{user.name} vs. Opponent</p>
-              <p>Win or loss: Win</p>
-              <p>Score: 6-4, 6-2</p>
-            </li>
-            <li>
-              <p>{user.name} vs. Opponent</p>
-              <p>Win or loss: Loss</p>
-              <p>Score: 4-6, 2-6</p>
-            </li>
-            <li>
-              <p>{user.name} vs. Opponent</p>
-              <p>Win or loss: Win</p>
-              <p>Score: 6-2, 2-6, 6-4</p>
-            </li>
+            {challenges.map((challenge) => (
+              <li key={challenge.id}>
+                <p>
+                  {user.name} vs. {challenge.opponent}
+                </p>
+                <p>Win or loss: {challenge.outcome}</p>
+                <p>Score: {challenge.score}</p>
+                <button>Update Match</button>
+              </li>
+            ))}
           </ul>
-        </div>
+        </section>
       </main>
     </>
   )

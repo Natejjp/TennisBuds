@@ -6,10 +6,12 @@ import { Profile } from './pages/Profile'
 import { SearchPage } from './pages/SearchPage'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
-import { isLoggedIn, logout } from './auth'
+import { getUser, isLoggedIn, logout } from './auth'
 import { HomePage } from './pages/HomePage'
 
 export function App() {
+  const user = getUser()
+
   function handleLogout() {
     logout()
 
@@ -43,7 +45,7 @@ export function App() {
                 </Link>
               )}
               {isLoggedIn() ? (
-                <Link to="/profile">
+                <Link to={`/profile/${user.id}`}>
                   <img src="source" alt="Avatar" height="64" width="64" />
                 </Link>
               ) : null}
@@ -60,7 +62,7 @@ export function App() {
           <Route exact path="/challenge/:opponent_id">
             <Challenge />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/profile/:test_id">
             <Profile />
           </Route>
           <Route exact path="/signup">
