@@ -8,6 +8,7 @@ import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 import { getUser, isLoggedIn, logout } from './auth'
 import { HomePage } from './pages/HomePage'
+import { UpdateMatch } from './pages/UpdateMatch'
 
 export function App() {
   const user = getUser()
@@ -73,6 +74,9 @@ export function App() {
           </Route>
           <Route exact path="/homepage">
             <HomePage />
+          </Route>
+          <Route exact path="/updatematch/:match_id">
+            <UpdateMatch />
           </Route>
         </Switch>
         <footer className="footer">ZipTennis</footer>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getUser } from '../auth'
 
 export function Profile() {
@@ -43,10 +43,14 @@ export function Profile() {
               <li key={challenge.id}>
                 <p>
                   {user.name} vs. {challenge.opponent}
+                  <button>Accpet Match</button>
+                  <button>Decline Match</button>
                 </p>
                 <p>Win or loss: {challenge.outcome}</p>
                 <p>Score: {challenge.score}</p>
-                <button>Update Match</button>
+                <Link to={`/updatematch/${challenge.id}`}>
+                  <button>Update Match</button>
+                </Link>
               </li>
             ))}
           </ul>
