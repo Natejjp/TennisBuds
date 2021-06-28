@@ -6,6 +6,7 @@ export function Profile() {
   const user = getUser()
 
   const [challenges, setChallenges] = useState([])
+  const [incomingChallenges, setIncomingChallenges] = useState([])
 
   useEffect(
     function () {
@@ -19,6 +20,21 @@ export function Profile() {
       loadChallenges()
     },
     [challenges]
+  )
+
+
+  useEffect(
+    function () {
+      async function loadChallenges() {
+        const response = await fetch(`api/Challenges?filterTwo=${user.id}`)
+        if (response.ok) {
+          const json = await response.json()
+          setIncomingChallenges(json)
+        }
+      }
+      loadChallenges()
+    },
+    [incomingChallenges]
   )
 
   return (
@@ -42,13 +58,30 @@ export function Profile() {
             {challenges.map((challenge) => (
               <li key={challenge.id}>
                 <p>
-                  {user.name} vs. {challenge.opponent}
+                  {user.name} vs. {challenge.opponentName}
                   <button>Accpet Match</button>
                   <button>Decline Match</button>
                 </p>
                 <p>Win or loss: {challenge.outcome}</p>
-                <p>Score: {challenge.score}</p>
+                <p>Score: {challenge.firstSet} {challenge.secondSet} {challenge.thirdSet} {challenge.fourthSet} {challenge.fifthSet}</p>
                 <Link to={`/updatematch/${challenge.id}`}>
+                  <button>Update Match</button>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <ul className="profileMatches">
+            {incomingChallenges.map((incomingChallenge) => (
+              <li key={incomingChallenge.id}>
+                <p>
+                  {user.name} vs. {incomingChallenge.userName}
+                  <button>Accpet Match</button>
+                  <button>Decline Match</button>
+                </p>
+                <p>Win or loss: {incomingChallenge.outcome}</p>
+                <p>Score: {incomingChallenge.firstSet} {incomingChallenge.secondSet} {incomingChallenge.thirdSet} {incomingChallenge.fourthSet} {incomingChallenge.fifthSet}</p>
+                <Link to={`/updatematch/${incomingChallenge.id}`}>
                   <button>Update Match</button>
                 </Link>
               </li>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TennisBuds.Models;
@@ -9,9 +10,10 @@ using TennisBuds.Models;
 namespace TennisBuds.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210627172848_AddSetsToChallenge")]
+    partial class AddSetsToChallenge
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,10 +52,7 @@ namespace TennisBuds.Migrations
                     b.Property<string>("Match")
                         .HasColumnType("text");
 
-                    b.Property<string>("OpponentId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("OpponentName")
+                    b.Property<string>("Opponent")
                         .HasColumnType("text");
 
                     b.Property<string>("Outcome")
@@ -70,9 +69,6 @@ namespace TennisBuds.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

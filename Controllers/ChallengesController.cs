@@ -31,20 +31,27 @@ namespace TennisBuds.Controllers
         // Returns a list of all your Challenges
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Challenge>>> GetChallenges(int? filter)
+        public async Task<ActionResult<IEnumerable<Challenge>>> GetChallenges(int? filter, string filterTwo)
         {
             // Uses the database context in `_context` to request all of the Challenges, sort
             // them by row id and return them as a JSON array.
             // return await _context.Challenges.OrderBy(row => row.Id).ToListAsync();
 
-            if (filter == null)
+            if (filter == null && filterTwo == null)
             {
                 return await _context.Challenges.ToListAsync();
             }
-            else
+            else if (filter != null)
             {
                 return await _context.Challenges.Where(challenge => challenge.UserId == filter).ToListAsync();
             }
+            else
+            {
+                return await _context.Challenges.Where(challenge => challenge.OpponentId == filterTwo).ToListAsync();
+            }
+
+
+
         }
 
         // GET: api/Challenges/5

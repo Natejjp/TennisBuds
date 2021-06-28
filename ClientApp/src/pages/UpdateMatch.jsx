@@ -36,7 +36,7 @@ export function UpdateMatch() {
   }
 
   async function handleSubmit() {
-    const response = await fetch('/api/Challenges', {
+    const response = await fetch(`/api/Challenges/${match_id}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(match),
@@ -50,69 +50,86 @@ export function UpdateMatch() {
       <main>
         <h1>Update Match</h1>
         <section>
+     
+        <form>
+
+          <ul>
+
           <p>
-            Win or Loss:
-            <button name="outcome" value="Win" onChange={handleUpdate}>
-              Win
-            </button>
-            <button name="outcome" value="Loss" onChange={handleUpdate}>
-              Loss
-            </button>
+            <label>Outcome:</label>
+            <input
+              type="radio"
+              name="outcome"
+              value="Win"
+              onChange={handleUpdate}
+            />
+            <label>Win</label>
+            <input
+              type="radio"
+              name="outcome"
+              value="Loss"
+              onChange={handleUpdate}
+            />
+            <label>Loss</label>
           </p>
+
+          </ul>
+    
           <ul>
             <li>Score:</li>
             <li>
               <label>1st Set:</label>
               <input
-                name="score"
+                name="firstSet"
                 type="text"
                 placeholder="Ex: 6-4"
                 onChange={handleUpdate}
                 required
-              />
+                />
             </li>
             <li>
               <label>2nd Set:</label>
               <input
-                name="score"
+                name="secondSet"
                 type="text"
                 placeholder="Ex: 6-4"
                 onChange={handleUpdate}
                 required
-              />
+                />
             </li>
             <li>
               <label>3rd Set:</label>
               <input
-                name="score"
+                name="thirdSet"
                 type="text"
                 placeholder="Ex: 6-4"
                 onChange={handleUpdate}
-                required
-              />
+              
+                />
             </li>
             <li>
               <label>4th Set:</label>
               <input
-                name="score"
+                name="fourthSet"
                 type="text"
                 placeholder="Ex: 6-4"
                 onChange={handleUpdate}
-              />
+                />
             </li>
             <li>
               <label>5th Set:</label>
               <input
-                name="score"
+                name="fifthSet"
                 type="text"
                 placeholder="Ex: 6-4"
                 onChange={handleUpdate}
-              />
+                />
             </li>
           </ul>
           <p>
             <button onClick={handleSubmit}>Submit</button>
           </p>
+                </form>
         </section>
       </main>
     </>

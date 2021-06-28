@@ -5,20 +5,27 @@ import { getUser } from '../auth'
 export function Challenge() {
   const history = useHistory()
   const user = getUser()
+  
+  const { opponent_id } = useParams()
+  const [opponent, setOpponent] = useState({
+    id: null,
+    name: '',
+    email:'',
+  })
+
   const [newChallenge, setNewChallenge] = useState({
-    opponent: '',
+   
+    opponentId: '',
+    opponentName: '',
     match: '',
     format: '',
     date: '',
     time: '',
     court: 'Fossil Park',
     userId: `${user.id}`,
+    userName: `${user.name}`
   })
 
-  const { opponent_id } = useParams()
-  const [opponent, setOpponent] = useState({
-    name: '',
-  })
 
   //Grabs all opponent data (just need name)
   useEffect(() => {
@@ -34,8 +41,9 @@ export function Challenge() {
   //Puts opponent name into newChallenge once date for challenge is changed
   useEffect(() => {
     const fetchOpponentName = async () => {
-      const same = opponent.name
-      setNewChallenge({ ...newChallenge, opponent: same })
+      const same = opponent.id
+      const sameTwo =opponent.name
+      setNewChallenge({ ...newChallenge, opponentId: same, opponentName: sameTwo })
     }
 
     fetchOpponentName()
