@@ -9,6 +9,9 @@ import { SignUp } from './pages/SignUp'
 import { getUser, isLoggedIn, logout } from './auth'
 import { HomePage } from './pages/HomePage'
 import { UpdateMatch } from './pages/UpdateMatch'
+import twitterIcon from './images/twitterIcon.png'
+import instagramIcon from './images/instagramIcon.png'
+import facebookIcon from './images/facebookIcon.png'
 
 export function App() {
   const user = getUser()
@@ -25,24 +28,28 @@ export function App() {
         <header>
           <ul className="header">
             <li className="leftHeader">
-              <nav>
+              <nav className="nav">
+                <p>
                 {isLoggedIn() ? (
                   <Link to="/">
-                    <i className="homeTitle"></i> SearchPlayers
+                    <i className="homeTitle"></i> Search<br/>Players
                   </Link>
                 ) : null}
+                </p>
+                <h3>
                 <Link to="/homepage"> Home</Link>
+                </h3>
               </nav>
             </li>
             <li className="rightHeader">
               {isLoggedIn() ? null : (
                 <Link to="/signin">
-                  <p>Sign In</p>
+                  <button className="signInButton">Sign In</button>
                 </Link>
               )}
               {isLoggedIn() ? null : (
                 <Link to="/signup">
-                  <p>Sign Up</p>
+                  <button className="signUpButton">Sign Up</button>
                 </Link>
               )}
               {isLoggedIn() ? (
@@ -51,7 +58,7 @@ export function App() {
                 </Link>
               ) : null}
               {isLoggedIn() ? (
-                <button onClick={handleLogout}> Logout</button>
+                <button className="signInButton" onClick={handleLogout}> Logout</button>
               ) : null}
             </li>
           </ul>
@@ -79,7 +86,16 @@ export function App() {
             <UpdateMatch />
           </Route>
         </Switch>
-        <footer className="footer">ZipTennis</footer>
+        <footer className="footer">
+          <p>
+          ZipTennis
+          </p>
+          <p className="socialLinks">
+          <img src={instagramIcon} alt="instagram" height = "25" width ="25"/>
+          <img src={twitterIcon} alt="twitter" height = "25" width ="25"/>
+          <img src={facebookIcon} alt="facebook" height = "25" width ="25"/>
+          </p>
+          </footer>
       </div>
     </>
   )

@@ -19,7 +19,7 @@ export function Profile() {
       }
       loadChallenges()
     },
-    [challenges]
+    []
   )
 
 
@@ -34,13 +34,13 @@ export function Profile() {
       }
       loadChallenges()
     },
-    [incomingChallenges]
+    []
   )
 
   return (
     <>
       <main className="containerProfile">
-        <section>
+        <section className="profileTop">
           <ul className="profileStats">
             <li className="profilePic">
               <img src="source" alt="ProfilePic" height="100" width="100" />
@@ -49,45 +49,46 @@ export function Profile() {
             <li>Rating: {user.rating}</li>
             <li>HomeCourt: {user.court}</li>
             <li>ZipCode Area: {user.zip}</li>
-            <button>Profile Settings</button>
+            <button className="profileButton">Profile Settings</button>
           </ul>
         </section>
+
         <section>
-          <h1>Latest Matches</h1>
+          <h1>Issued Matches</h1>
           <ul className="profileMatches">
             {challenges.map((challenge) => (
               <li key={challenge.id}>
                 <p>
                   {user.name} vs. {challenge.opponentName}
-                  <button>Accpet Match</button>
-                  <button>Decline Match</button>
                 </p>
                 <p>Win or loss: {challenge.outcome}</p>
                 <p>Score: {challenge.firstSet} {challenge.secondSet} {challenge.thirdSet} {challenge.fourthSet} {challenge.fifthSet}</p>
                 <Link to={`/updatematch/${challenge.id}`}>
-                  <button>Update Match</button>
+                  <button className="profileButton">Update Match</button>
                 </Link>
               </li>
             ))}
           </ul>
+            </section>
 
+          <section>
+          <h1>Incoming Matches</h1>
           <ul className="profileMatches">
             {incomingChallenges.map((incomingChallenge) => (
               <li key={incomingChallenge.id}>
                 <p>
                   {user.name} vs. {incomingChallenge.userName}
-                  <button>Accpet Match</button>
-                  <button>Decline Match</button>
                 </p>
                 <p>Win or loss: {incomingChallenge.outcome}</p>
                 <p>Score: {incomingChallenge.firstSet} {incomingChallenge.secondSet} {incomingChallenge.thirdSet} {incomingChallenge.fourthSet} {incomingChallenge.fifthSet}</p>
                 <Link to={`/updatematch/${incomingChallenge.id}`}>
-                  <button>Update Match</button>
+                  <button className="profileButton">Update Match</button>
                 </Link>
               </li>
             ))}
           </ul>
-        </section>
+          </section>
+
       </main>
     </>
   )

@@ -29,6 +29,7 @@ export function SearchPage() {
         <h1 className="titleSearch">Zip Tennis</h1>
         <form className="titleSearch">
           <input
+            className="inputSearch"
             type="text"
             placeholder="Enter zip code"
             value={searchUser}
@@ -39,7 +40,7 @@ export function SearchPage() {
         </form>
       </section>
 
-      <section className="containerSearch">
+      <section className="containerSearchList">
         <ul className="playerResults">
           {users.map((user) => (
             <li key={user.id} className="playerDetails">

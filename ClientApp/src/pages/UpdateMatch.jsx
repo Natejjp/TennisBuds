@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 export function UpdateMatch() {
   const [match, setMatch] = useState({
+    id: null,
     match: '',
     format: '',
     date: '',
@@ -45,16 +46,35 @@ export function UpdateMatch() {
       console.log('hi')
     }
   }
+
+  async function handleDecline() {
+    const response = await fetch(`api/Challenges/${match.id}`, {
+      method:'DELETE',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(match),
+      })
+      if (response.ok){
+        window.location.assign('/profile/:test_id')
+      }
+
+    
+  }
   return (
     <>
       <main>
-        <h1>Update Match</h1>
-        <section>
+        <h1 className="titleUpdate">Update Match</h1>
+        <section className="updateMenu">
      
-        <form>
-
           <ul>
-
+            <button className="updateButton">
+              Accept
+            </button>
+            <button className="updateButton" onClick={handleDecline}>
+              Decline
+            </button>
+          </ul>
+        <form>
+          <ul>
           <p>
             <label>Outcome:</label>
             <input
@@ -72,7 +92,6 @@ export function UpdateMatch() {
             />
             <label>Loss</label>
           </p>
-
           </ul>
     
           <ul>
@@ -126,10 +145,10 @@ export function UpdateMatch() {
                 />
             </li>
           </ul>
-          <p>
-            <button onClick={handleSubmit}>Submit</button>
-          </p>
-                </form>
+          <ul>
+            <button className="updateButton" onClick={handleSubmit}>Submit</button>
+          </ul>
+          </form>
         </section>
       </main>
     </>
