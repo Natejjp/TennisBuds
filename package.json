@@ -1,4 +1,7 @@
 {
   "name": "TennisBuds",
-  "private": "true"
+  "private": "true",
+  "dependencies": {
+    "react-dropzone": "^11.3.4"
+  }
 }

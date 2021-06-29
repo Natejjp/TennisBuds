@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDropzone } from 'react-dropzone'
+import { authHeader } from '../auth'
 
 export function SignUp() {
   const history = useHistory()
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState('')
   const [newUser, setNewUser] = useState({
     name: '',
     email: '',
@@ -12,6 +14,13 @@ export function SignUp() {
     zip: '',
     court: 'Fossil Park',
     rating: 0,
+    photoURL: '',
+  })
+
+  const [isUploading, setIsUploading] = useState(false)
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: onDropFile,
   })
 
   function handleStringFieldChange(event) {
@@ -35,6 +44,55 @@ export function SignUp() {
     } else {
       history.push('/')
     }
+  }
+
+
+  async function onDropFile(acceptedFiles) {
+    // Do something with the files
+    const fileToUpload = acceptedFiles[0]
+    console.log(fileToUpload)
+    // Create a formData object so we can send this
+    // to the API that is expecting som form data.
+    const formData = new FormData()
+    // Append a field that is the form upload itself
+    formData.append('file', fileToUpload)
+    try {
+      setIsUploading(true)
+      // Use fetch to send an authorization header and
+      // a body containing the form data with the file
+      const response = await fetch('/api/Uploads', {
+        method: 'POST',
+        headers: {
+          ...authHeader(),
+        },
+        body: formData,
+      })
+      setIsUploading(false)
+      // If we receive a 200 OK response, set the
+      // URL of the photo in our state so that it is
+      // sent along when creating the user,
+      // otherwise show an error
+      if (response.ok) {
+        const apiResponse = await response.json()
+        const url = apiResponse.url
+        setNewUser({ ...newUser, photoURL: url })
+      } else {
+        setErrorMessage('Unable to upload image')
+      }
+    } catch (error) {
+      // Catch any network errors and show the user we could not process their upload
+      console.debug(error)
+      setErrorMessage('Unable to upload image')
+    }
+    setIsUploading(false)
+  }
+  
+  let dropZoneMessage = 'Drag a picture of the user here to upload!'
+  if (isUploading) {
+    dropZoneMessage = 'Uploading...'
+  }
+  if (isDragActive) {
+    dropZoneMessage = 'Drop the files here ...'
   }
 
   return (
@@ -114,6 +172,7 @@ export function SignUp() {
             </select>
           </p>
 
+
           <p>
             <label>Rating:</label>
             <input
@@ -123,10 +182,20 @@ export function SignUp() {
               value={newUser.rating}
               onChange={handleStringFieldChange}
             />
+          {newUser.photoURL ? (
+            <p>
+              <img alt="User Photo" width={200} src={newUser.photoURL} />
+            </p>
+          ) : null}
+
+          <div className="file-drop-zone">
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              {dropZoneMessage}
+            </div>
+          </div>
           </p>
-          <p>
-            <input type="file" />
-          </p>
+
           <p>
             <input type="submit" value="Submit" />
           </p>
