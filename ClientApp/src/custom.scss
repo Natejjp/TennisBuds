@@ -66,8 +66,6 @@ a {
   margin-left: 10px ;
 }
 
-
-
 .signInButton, .signUpButton{
   margin: 2px;
   padding: 5px 15px;
@@ -78,6 +76,11 @@ a {
   outline: none;
   cursor: pointer;
   box-shadow: 1px 1px black;
+}
+
+header .avatar{
+  object-fit:contain;
+  height: 64px;
 }
 
 //Search Page

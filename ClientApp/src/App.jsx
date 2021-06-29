@@ -52,11 +52,19 @@ export function App() {
                   <button className="signUpButton">Sign Up</button>
                 </Link>
               )}
-              {isLoggedIn() ? (
-                <Link to={`/profile/${user.id}`}>
-                  <img src="source" alt="Avatar" height="64" width="64" />
+              {isLoggedIn() && user.photoURL ? (
+                  <Link to={`/profile/${user.id}`}>
+
+                  <li className="avatar">
+                    <img
+                      src={user.photoURL}
+                      alt={`${user.fullName}'s Avatar`}
+                      height="64"
+                      />
+                  </li>
                 </Link>
-              ) : null}
+                ) : null}
+
               {isLoggedIn() ? (
                 <button className="signInButton" onClick={handleLogout}> Logout</button>
               ) : null}
