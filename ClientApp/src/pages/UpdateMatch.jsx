@@ -15,7 +15,7 @@ export function UpdateMatch() {
     outcome: '',
   })
 
-  const { match_id } = useParams()
+  const  match_id  = useParams()
 
   useEffect(function () {
     async function loadMatch() {
@@ -47,7 +47,7 @@ export function UpdateMatch() {
     }
   }
 
-  async function handleDecline() {
+  async function handleDelete() {
     const response = await fetch(`api/Challenges/${match.id}`, {
       method:'DELETE',
       headers: { 'content-type': 'application/json' },
@@ -138,7 +138,7 @@ export function UpdateMatch() {
           </ul>
           <ul>
             <button className="signInButton" onClick={handleSubmit}>Submit</button>
-            <button className="deleteButton" onClick={handleDecline}>Delete</button>
+            <button className="deleteButton" onClick={handleDelete}>Delete</button>
           </ul>
           </form>
         </section>

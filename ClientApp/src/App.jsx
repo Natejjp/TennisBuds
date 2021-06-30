@@ -13,6 +13,8 @@ import twitterIcon from './images/twitterIcon.png'
 import instagramIcon from './images/instagramIcon.png'
 import facebookIcon from './images/facebookIcon.png'
 import defaultProfile from './images/defaultProfile.png'
+import { EditUser } from './pages/EditUser'
+
 export function App() {
   const user = getUser()
 
@@ -101,6 +103,9 @@ export function App() {
           <Route exact path="/updatematch/:match_id">
             <UpdateMatch />
           </Route>
+          <Route exact path="/profile">
+           <EditUser />
+         </Route>
         </Switch>
         <footer className="footer">
           <p>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getUser } from '../auth'
+import { getUser, isLoggedIn } from '../auth'
 import swords from '../images/swords.png'
 import shield from '../images/shield.png'
 
@@ -53,7 +53,9 @@ export function Profile() {
             <li>Rating: {user.rating}</li>
             <li>HomeCourt: {user.court}</li>
             <li>ZipCode Area: {user.zip}</li>
-            <button className="signInButton">Profile Settings</button>
+            <Link to="/profile"> <button className="signInButton">Edit Profile</button>
+            </Link>
+
           </ul>
         </section>
 
@@ -93,9 +95,6 @@ export function Profile() {
                 </p>
                 <p>Win or loss: {incomingChallenge.outcome}</p>
                 <p>Score: {incomingChallenge.firstSet} {incomingChallenge.secondSet} {incomingChallenge.thirdSet} {incomingChallenge.fourthSet} {incomingChallenge.fifthSet}</p>
-                <Link to={`/updatematch/${incomingChallenge.id}`}>
-                  <button className="signInButton">Update Match</button>
-                </Link>
               </li>
             ))}
           </ul>

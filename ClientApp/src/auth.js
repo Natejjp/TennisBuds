@@ -77,8 +77,13 @@ const authFromStorage = () => {
 export const updateUserAuth = (updatedUser) => {
   const auth = authFromStorage()
 
+  auth.user.name = updatedUser.name
   auth.user.email = updatedUser.email
-  auth.user.fullName = updatedUser.fullName
+  auth.user.password =updatedUser.password
+  auth.user.telephone = updatedUser.telephone
+  auth.user.zip = updatedUser.zip
+  auth.user.court = updatedUser.court
+  auth.user.rating = updatedUser.rating
   auth.user.photoURL = updatedUser.photoURL
 
   recordAuthentication(auth)

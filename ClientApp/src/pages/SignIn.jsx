@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { recordAuthentication } from '../auth'
 
 export function SignIn() {
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState('')
 
   const [user, setUser] = useState({
     email: '',

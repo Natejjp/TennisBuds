@@ -6,7 +6,7 @@ export function Challenge() {
   const history = useHistory()
   const user = getUser()
   
-  const { opponent_id } = useParams()
+  const opponent_id = useParams()
   const [opponent, setOpponent] = useState({
     id: null,
     name: '',

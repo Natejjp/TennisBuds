@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -80,18 +82,21 @@ namespace TennisBuds.Controllers
         // new values for the record.
         //
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> PutUser(int id, User User)
         {
             // If the ID in the URL does not match the ID in the supplied request body, return a bad request
-            if (id != user.Id)
+            if (id != User.Id)
             {
                 return BadRequest();
             }
-
-            // Tell the database to consider everything in user to be _updated_ values. When
-            // the save happens the database will _replace_ the values in the database with the ones from user
-            _context.Entry(user).State = EntityState.Modified;
-
+            if (id != GetCurrentUserId())
+            {
+                return BadRequest();
+            }
+            // Tell the database to consider everything in User to be _updated_ values. When
+            // the save happens the database will _replace_ the values in the database with the ones from User
+            _context.Entry(User).State = EntityState.Modified;
             try
             {
                 // Try to save these changes.
@@ -114,9 +119,21 @@ namespace TennisBuds.Controllers
                     throw;
                 }
             }
-
-            // Return a copy of the updated data
-            return Ok(user);
+            // return NoContent to indicate the update was done. Alternatively you can use the
+            // following to send back a copy of the updated data.
+            //
+            return Ok(User);
+        }
+        // Private helper method that looks up an existing User by the supplied id
+        private bool UserExists(int id)
+        {
+            return _context.Users.Any(User => User.Id == id);
+        }
+        // Private helper method to get the JWT claim related to the user ID
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
         }
 
         // POST: api/Users
@@ -160,31 +177,31 @@ namespace TennisBuds.Controllers
         // In the sample URL above it is the `5`. The "{id} in the [HttpDelete("{id}")] is what tells dotnet
         // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
         //
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            // Find this user by looking for the specific id
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                // There wasn't a user with that id so return a `404` not found
-                return NotFound();
-            }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteUser(int id)
+        // {
+        //     // Find this user by looking for the specific id
+        //     var user = await _context.Users.FindAsync(id);
+        //     if (user == null)
+        //     {
+        //         // There wasn't a user with that id so return a `404` not found
+        //         return NotFound();
+        //     }
 
-            // Tell the database we want to remove this record
-            _context.Users.Remove(user);
+        //     // Tell the database we want to remove this record
+        //     _context.Users.Remove(user);
 
-            // Tell the database to perform the deletion
-            await _context.SaveChangesAsync();
+        //     // Tell the database to perform the deletion
+        //     await _context.SaveChangesAsync();
 
-            // Return a copy of the deleted data
-            return Ok(user);
-        }
+        //     // Return a copy of the deleted data
+        //     return Ok(user);
+        // }
 
-        // Private helper method that looks up an existing user by the supplied id
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(user => user.Id == id);
-        }
+        // // Private helper method that looks up an existing user by the supplied id
+        // private bool UserExists(int id)
+        // {
+        //     return _context.Users.Any(user => user.Id == id);
+        // }
     }
 }
