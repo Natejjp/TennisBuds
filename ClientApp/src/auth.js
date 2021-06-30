@@ -79,7 +79,6 @@ export const updateUserAuth = (updatedUser) => {
 
   auth.user.name = updatedUser.name
   auth.user.email = updatedUser.email
-  auth.user.password =updatedUser.password
   auth.user.telephone = updatedUser.telephone
   auth.user.zip = updatedUser.zip
   auth.user.court = updatedUser.court

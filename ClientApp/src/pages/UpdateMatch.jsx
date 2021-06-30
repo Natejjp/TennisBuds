@@ -10,12 +10,13 @@ export function UpdateMatch() {
     time: '',
     court: '',
     createdAt: '',
-    opponent: '',
+    opponentName: '',
+    userName: '',
     score: '',
     outcome: '',
   })
 
-  const  match_id  = useParams()
+  const  {match_id}  = useParams()
 
   useEffect(function () {
     async function loadMatch() {
@@ -71,14 +72,14 @@ export function UpdateMatch() {
             <input
               type="radio"
               name="outcome"
-              value="Win"
+              value={`${match.userName} Defeats ${match.opponentName}`}
               onChange={handleUpdate}
             />
             <label>Win</label>
             <input
               type="radio"
               name="outcome"
-              value="Loss"
+              value={`${match.opponentName} Defeats ${match.userName}`}
               onChange={handleUpdate}
             />
             <label>Loss</label>

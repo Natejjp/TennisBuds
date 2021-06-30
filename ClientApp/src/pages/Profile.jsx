@@ -45,7 +45,7 @@ export function Profile() {
         <section className="profileTop">
           <ul>
           <li className="profilePic">
-              <img src={user.photoURL} alt={`${user.fullName}'s Avatar`} height="100" width="100" />
+              <img className="profileAvatar" src={user.photoURL} alt={`${user.fullName}'s Avatar`} height="150" width="150" />
             </li>
           </ul>
           <ul className="profileStats">
@@ -71,7 +71,7 @@ export function Profile() {
                 <p>
                   {user.name} vs. {challenge.opponentName}
                 </p>
-                <p>Win or loss: {challenge.outcome}</p>
+                <p>Result: {challenge.outcome}</p>
                 <p>Score: {challenge.firstSet} {challenge.secondSet} {challenge.thirdSet} {challenge.fourthSet} {challenge.fifthSet}</p>
                 <Link to={`/updatematch/${challenge.id}`}>
                   <button className="signInButton">Update Match</button>
@@ -93,7 +93,7 @@ export function Profile() {
                 <p>
                   {user.name} vs. {incomingChallenge.userName}
                 </p>
-                <p>Win or loss: {incomingChallenge.outcome}</p>
+                <p>Result: {incomingChallenge.outcome}</p>
                 <p>Score: {incomingChallenge.firstSet} {incomingChallenge.secondSet} {incomingChallenge.thirdSet} {incomingChallenge.fourthSet} {incomingChallenge.fifthSet}</p>
               </li>
             ))}

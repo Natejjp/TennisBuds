@@ -59,9 +59,10 @@ export function App() {
 
                   <li className="avatar">
                     <img
+                      className="avatarPic"
                       src={user.photoURL}
                       alt={`${user.fullName}'s Avatar`}
-                      height="64"
+                      height="50"
                       />
                   </li>
                 </Link>

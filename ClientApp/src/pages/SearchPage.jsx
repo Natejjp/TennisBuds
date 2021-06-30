@@ -52,7 +52,7 @@ export function SearchPage() {
           {users.map((user) => (
             <li key={user.id} className="playerDetails">
               <p>
-              <img src={user.photoURL} alt={`${user.fullName}'s Avatar`} height="64" />
+              <img className="searchPic" src={user.photoURL} alt={`${user.fullName}'s Avatar`} height="100" />
               </p>
               <h3>{user.name}</h3>
               <p>Zip: {user.zip} </p>
