@@ -12,7 +12,7 @@ import { UpdateMatch } from './pages/UpdateMatch'
 import twitterIcon from './images/twitterIcon.png'
 import instagramIcon from './images/instagramIcon.png'
 import facebookIcon from './images/facebookIcon.png'
-
+import defaultProfile from './images/defaultProfile.png'
 export function App() {
   const user = getUser()
 
@@ -63,7 +63,15 @@ export function App() {
                       />
                   </li>
                 </Link>
-                ) : null}
+                ) : 
+                null}
+
+                {isLoggedIn() && user.photoURL == null ? (
+                  <Link to={`/profile/${user.id}`}>
+                   <img src={defaultProfile} alt="defaultAvatar" height="64"/>
+                   </Link>
+                ) : 
+                null}
 
               {isLoggedIn() ? (
                 <button className="signInButton" onClick={handleLogout}> Logout</button>

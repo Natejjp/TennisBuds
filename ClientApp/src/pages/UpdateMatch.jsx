@@ -43,7 +43,7 @@ export function UpdateMatch() {
       body: JSON.stringify(match),
     })
     if (response.ok) {
-      console.log('hi')
+      window.location.assign('/profile/:test_id')
     }
   }
 
@@ -61,18 +61,9 @@ export function UpdateMatch() {
   }
   return (
     <>
-      <main>
+      <main className="updateContainer">
         <h1 className="titleUpdate">Update Match</h1>
         <section className="updateMenu">
-     
-          <ul>
-            <button className="updateButton">
-              Accept
-            </button>
-            <button className="updateButton" onClick={handleDecline}>
-              Decline
-            </button>
-          </ul>
         <form>
           <ul>
           <p>
@@ -146,7 +137,8 @@ export function UpdateMatch() {
             </li>
           </ul>
           <ul>
-            <button className="updateButton" onClick={handleSubmit}>Submit</button>
+            <button className="signInButton" onClick={handleSubmit}>Submit</button>
+            <button className="deleteButton" onClick={handleDecline}>Delete</button>
           </ul>
           </form>
         </section>

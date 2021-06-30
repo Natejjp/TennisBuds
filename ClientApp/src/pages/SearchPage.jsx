@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import lightningthree from '../images/lightningthree.png'
+
 
 export function SearchPage() {
   const [users, setUsers] = useState([])
@@ -26,8 +28,13 @@ export function SearchPage() {
   return (
     <main className="searchPage">
       <section className="containerSearch">
-        <h1 className="titleSearch">Zip Tennis</h1>
-        <form className="titleSearch">
+        <h1 className="titleSearch">Zip Tennis  <img
+                src={lightningthree}
+                alt="Zip Tennis Logo"
+                height="40"
+                width="40"
+              /></h1>
+        <form>
           <input
             className="inputSearch"
             type="text"
@@ -44,12 +51,20 @@ export function SearchPage() {
         <ul className="playerResults">
           {users.map((user) => (
             <li key={user.id} className="playerDetails">
-              <h2>Name: {user.name}</h2>
-              <p>Zip: {user.zip}</p>
+              <p>
+              <img src={user.photoURL} alt={`${user.fullName}'s Avatar`} height="64" />
+              </p>
+              <h3>{user.name}</h3>
+              <p>Zip: {user.zip} </p>
               <p>Rating: {user.rating}</p>
               <p>HomeCourt: {user.court}</p>
               <Link to={`/challenge/${user.id}`}>
-                <button>Challenge</button>
+                <button className="signInButton">Challenge<img
+                src={lightningthree}
+                alt="Zip Tennis Logo"
+                height="20"
+                width="20"
+              /></button>
               </Link>
             </li>
           ))}

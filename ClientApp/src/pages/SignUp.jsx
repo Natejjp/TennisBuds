@@ -87,7 +87,7 @@ export function SignUp() {
     setIsUploading(false)
   }
   
-  let dropZoneMessage = 'Drag a picture of the user here to upload!'
+  let dropZoneMessage = 'Drag a profile photo here'
   if (isUploading) {
     dropZoneMessage = 'Uploading...'
   }
@@ -188,7 +188,7 @@ export function SignUp() {
             </p>
           ) : null}
 
-          <div className="file-drop-zone">
+          <div className="fileZone">
             <div {...getRootProps()}>
               <input {...getInputProps()} />
               {dropZoneMessage}
@@ -197,7 +197,7 @@ export function SignUp() {
           </p>
 
           <p>
-            <input type="submit" value="Submit" />
+            <input className="signInButton" type="submit" value="Submit" />
           </p>
         </form>
       </main>

@@ -60,7 +60,7 @@ export function SignIn() {
             />
           </p>
           <p>
-            <input type="submit" name="submit"></input>
+            <input className="signInButton" type="submit" name="submit"></input>
           </p>
         </form>
       </main>

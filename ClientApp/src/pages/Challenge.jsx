@@ -73,6 +73,8 @@ export function Challenge() {
   return (
     <>
       <main className="challengeContainer">
+        <section className="challengeSection">
+
         <h1>
           {user.name} challenges {opponent.name}
         </h1>
@@ -85,14 +87,14 @@ export function Challenge() {
               name="match"
               value="Singles"
               onChange={handleChallenge}
-            />
+              />
             <label>Singles</label>
             <input
               type="radio"
               name="match"
               value="Double"
               onChange={handleChallenge}
-            />
+              />
             <label>Doubles</label>
           </p>
           <p>
@@ -102,14 +104,14 @@ export function Challenge() {
               name="format"
               value="3 Sets of 6"
               onChange={handleChallenge}
-            />
+              />
             <label>3 Sets of 6</label>
             <input
               type="radio"
               name="format"
               value="5 Sets of 6"
               onChange={handleChallenge}
-            />
+              />
             <label>5 Sets of 6</label>
           </p>
           <p>
@@ -121,7 +123,7 @@ export function Challenge() {
               value={newChallenge.date}
               onChange={handleChallenge}
               required
-            />
+              />
           </p>
           <p>
             <label>Choose a time:</label>
@@ -130,7 +132,8 @@ export function Challenge() {
               name="time"
               value={newChallenge.time}
               onChange={handleChallenge}
-            />
+              required
+              />
             <small>Contact Player</small>
           </p>
           <p>
@@ -149,9 +152,13 @@ export function Challenge() {
             </select>
           </p>
           <p>
-            <input type="submit" value="submit" />
+            Contact Player: {opponent.email}
+          </p>
+          <p>
+            <input className="signInButton" type="submit" value="submit" />
           </p>
         </form>
+      </section>
       </main>
     </>
   )
