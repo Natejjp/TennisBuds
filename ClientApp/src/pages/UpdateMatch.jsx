@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getUser } from '../auth'
+import { getUser, getUserId } from '../auth'
 
 export function UpdateMatch() {
   const user = getUser()
@@ -49,7 +49,7 @@ export function UpdateMatch() {
       body: JSON.stringify(match),
     })
     if (response.ok) {
-      window.location.assign(`/profile/:match_id}`)
+      window.location.assign(`/profile/${user.id}`)
     }
   }
 
@@ -60,7 +60,7 @@ export function UpdateMatch() {
       body: JSON.stringify(match),
     })
     if (response.ok) {
-      window.location.assign('/profile/:match_id')
+      window.location.assign(`/profile/${user.id}`)
     }
   }
   return (
