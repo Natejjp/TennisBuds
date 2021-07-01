@@ -32,14 +32,16 @@ export function App() {
             <li className="leftHeader">
               <nav className="nav">
                 <p>
-                {isLoggedIn() ? (
-                  <Link to="/">
-                    <i className="homeTitle"></i> Search<br/>Players
-                  </Link>
-                ) : null}
+                  {isLoggedIn() ? (
+                    <Link to="/">
+                      <i className="homeTitle"></i> Search
+                      <br />
+                      Players
+                    </Link>
+                  ) : null}
                 </p>
                 <h3>
-                <Link to="/homepage"> Home</Link>
+                  <Link to="/homepage"> Home</Link>
                 </h3>
               </nav>
             </li>
@@ -55,29 +57,29 @@ export function App() {
                 </Link>
               )}
               {isLoggedIn() && user.photoURL ? (
-                  <Link to={`/profile/${user.id}`}>
-
+                <Link to={`/profile/${user.id}`}>
                   <li className="avatar">
                     <img
                       className="avatarPic"
                       src={user.photoURL}
                       alt={`${user.fullName}'s Avatar`}
                       height="50"
-                      />
+                    />
                   </li>
                 </Link>
-                ) : 
-                null}
+              ) : null}
 
-                {isLoggedIn() && user.photoURL == null ? (
-                  <Link to={`/profile/${user.id}`}>
-                   <img src={defaultProfile} alt="defaultAvatar" height="64"/>
-                   </Link>
-                ) : 
-                null}
+              {isLoggedIn() && user.photoURL == null ? (
+                <Link to={`/profile/${user.id}`}>
+                  <img src={defaultProfile} alt="defaultAvatar" height="64" />
+                </Link>
+              ) : null}
 
               {isLoggedIn() ? (
-                <button className="signInButton" onClick={handleLogout}> Logout</button>
+                <button className="signInButton" onClick={handleLogout}>
+                  {' '}
+                  Logout
+                </button>
               ) : null}
             </li>
           </ul>
@@ -105,19 +107,25 @@ export function App() {
             <UpdateMatch />
           </Route>
           <Route exact path="/profile">
-           <EditUser />
-         </Route>
+            <EditUser />
+          </Route>
         </Switch>
         <footer className="footer">
-          <p>
-          ZipTennis
-          </p>
+          <Link to="/homepage">
+            <p>ZipTennis</p>
+          </Link>
           <p className="socialLinks">
-          <img src={instagramIcon} alt="instagram" height = "25" width ="25"/>
-          <img src={twitterIcon} alt="twitter" height = "25" width ="25"/>
-          <img src={facebookIcon} alt="facebook" height = "25" width ="25"/>
+            <a href="https://www.instagram.com/">
+              <img src={instagramIcon} alt="instagram" height="25" width="25" />
+            </a>
+            <a href="https://www.twitter.com/">
+              <img src={twitterIcon} alt="twitter" height="25" width="25" />
+            </a>
+            <a href="https://www.facebook.com/">
+              <img src={facebookIcon} alt="facebook" height="25" width="25" />
+            </a>
           </p>
-          </footer>
+        </footer>
       </div>
     </>
   )

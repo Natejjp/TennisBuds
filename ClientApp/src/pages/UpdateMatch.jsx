@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { getUser } from '../auth'
 
 export function UpdateMatch() {
+  const user = getUser()
   const [match, setMatch] = useState({
     id: null,
     match: '',
@@ -16,7 +18,7 @@ export function UpdateMatch() {
     outcome: '',
   })
 
-  const  {match_id}  = useParams()
+  const { match_id } = useParams()
 
   useEffect(function () {
     async function loadMatch() {
@@ -44,103 +46,104 @@ export function UpdateMatch() {
       body: JSON.stringify(match),
     })
     if (response.ok) {
-      window.location.assign('/profile/:test_id')
+      window.location.assign(`/profile/:match_id}`)
     }
   }
 
   async function handleDelete() {
     const response = await fetch(`api/Challenges/${match.id}`, {
-      method:'DELETE',
+      method: 'DELETE',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(match),
-      })
-      if (response.ok){
-        window.location.assign('/profile/:test_id')
-      }
-
-    
+    })
+    if (response.ok) {
+      window.location.assign('/profile/:match_id')
+    }
   }
   return (
     <>
       <main className="updateContainer">
         <h1 className="titleUpdate">Update Match</h1>
         <section className="updateMenu">
-        <form>
-          <ul>
-          <p>
-            <label>Outcome:</label>
-            <input
-              type="radio"
-              name="outcome"
-              value={`${match.userName} Defeats ${match.opponentName}`}
-              onChange={handleUpdate}
-            />
-            <label>Win</label>
-            <input
-              type="radio"
-              name="outcome"
-              value={`${match.opponentName} Defeats ${match.userName}`}
-              onChange={handleUpdate}
-            />
-            <label>Loss</label>
-          </p>
-          </ul>
-    
-          <ul>
-            <li>Score:</li>
-            <li>
-              <label>1st Set:</label>
-              <input
-                name="firstSet"
-                type="text"
-                placeholder="Ex: 6-4"
-                onChange={handleUpdate}
-                required
+          <form>
+            <ul>
+              <p>
+                <label>Outcome:</label>
+                <input
+                  type="radio"
+                  name="outcome"
+                  value={`${match.userName} Defeats ${match.opponentName}`}
+                  onChange={handleUpdate}
                 />
-            </li>
-            <li>
-              <label>2nd Set:</label>
-              <input
-                name="secondSet"
-                type="text"
-                placeholder="Ex: 6-4"
-                onChange={handleUpdate}
-                required
+                <label>Win</label>
+                <input
+                  type="radio"
+                  name="outcome"
+                  value={`${match.opponentName} Defeats ${match.userName}`}
+                  onChange={handleUpdate}
                 />
-            </li>
-            <li>
-              <label>3rd Set:</label>
-              <input
-                name="thirdSet"
-                type="text"
-                placeholder="Ex: 6-4"
-                onChange={handleUpdate}
-              
+                <label>Loss</label>
+              </p>
+            </ul>
+
+            <ul>
+              <li>Score:</li>
+              <li>
+                <label>1st Set:</label>
+                <input
+                  name="firstSet"
+                  type="text"
+                  placeholder="Ex: 6-4"
+                  onChange={handleUpdate}
+                  required
                 />
-            </li>
-            <li>
-              <label>4th Set:</label>
-              <input
-                name="fourthSet"
-                type="text"
-                placeholder="Ex: 6-4"
-                onChange={handleUpdate}
+              </li>
+              <li>
+                <label>2nd Set:</label>
+                <input
+                  name="secondSet"
+                  type="text"
+                  placeholder="Ex: 6-4"
+                  onChange={handleUpdate}
+                  required
                 />
-            </li>
-            <li>
-              <label>5th Set:</label>
-              <input
-                name="fifthSet"
-                type="text"
-                placeholder="Ex: 6-4"
-                onChange={handleUpdate}
+              </li>
+              <li>
+                <label>3rd Set:</label>
+                <input
+                  name="thirdSet"
+                  type="text"
+                  placeholder="Ex: 6-4"
+                  onChange={handleUpdate}
                 />
-            </li>
-          </ul>
-          <ul>
-            <button className="signInButton" onClick={handleSubmit}>Submit</button>
-            <button className="deleteButton" onClick={handleDelete}>Delete</button>
-          </ul>
+              </li>
+              <li>
+                <label>4th Set:</label>
+                <input
+                  name="fourthSet"
+                  type="text"
+                  placeholder="Ex: 6-4"
+                  onChange={handleUpdate}
+                />
+              </li>
+              <li>
+                <label>5th Set:</label>
+                <input
+                  name="fifthSet"
+                  type="text"
+                  placeholder="Ex: 6-4"
+                  onChange={handleUpdate}
+                />
+              </li>
+            </ul>
+            <ul className="joinNow">
+              <button className="signInButton" onClick={handleSubmit}>
+                Submit
+              </button>
+              <button className="deleteButton" onClick={handleDelete}>
+                Delete
+              </button>
+            </ul>
           </form>
         </section>
       </main>

@@ -52,7 +52,7 @@ export function SignIn() {
           <p>
             <label>Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
               placeholder="Password"
               value={user.password}

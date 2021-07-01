@@ -46,7 +46,6 @@ export function SignUp() {
     }
   }
 
-
   async function onDropFile(acceptedFiles) {
     // Do something with the files
     const fileToUpload = acceptedFiles[0]
@@ -86,7 +85,7 @@ export function SignUp() {
     }
     setIsUploading(false)
   }
-  
+
   let dropZoneMessage = 'Drag a profile photo here'
   if (isUploading) {
     dropZoneMessage = 'Uploading...'
@@ -125,6 +124,7 @@ export function SignUp() {
           <p>
             <label>Password:</label>
             <input
+              type="password"
               name="password"
               placeholder="Password"
               value={newUser.password}
@@ -172,7 +172,6 @@ export function SignUp() {
             </select>
           </p>
 
-
           <p>
             <label>Rating:</label>
             <input
@@ -182,18 +181,18 @@ export function SignUp() {
               value={newUser.rating}
               onChange={handleStringFieldChange}
             />
-          {newUser.photoURL ? (
-            <p>
-              <img alt="User Photo" width={200} src={newUser.photoURL} />
-            </p>
-          ) : null}
+            {newUser.photoURL ? (
+              <p>
+                <img alt="User Photo" width={200} src={newUser.photoURL} />
+              </p>
+            ) : null}
 
-          <div className="fileZone">
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              {dropZoneMessage}
+            <div className="fileZone">
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {dropZoneMessage}
+              </div>
             </div>
-          </div>
           </p>
 
           <p>

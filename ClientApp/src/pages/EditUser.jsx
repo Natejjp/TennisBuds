@@ -9,7 +9,6 @@ export function EditUser() {
     id: user.id,
     name: user.name,
     email: user.email,
-    password: '',
     telephone: user.telephone,
     zip: user.zip,
     court: user.court,
@@ -21,7 +20,6 @@ export function EditUser() {
     onDrop: onDropFile,
   })
   const [isUploading, setIsUploading] = useState(false)
-
 
   function handleStringFieldChange(event) {
     const value = event.target.value
@@ -35,7 +33,7 @@ export function EditUser() {
     event.preventDefault()
     const response = await fetch(`/api/Users/${user.id}`, {
       method: 'PUT',
-      headers: { 'content-type': 'application/json', ...authHeader()},
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(updatedUser),
     })
     const apiResponse = await response.json()
@@ -46,7 +44,6 @@ export function EditUser() {
       window.location.assign(`/profile/${user.id}`)
     }
   }
-
 
   async function onDropFile(acceptedFiles) {
     // Do something with the files
@@ -87,7 +84,7 @@ export function EditUser() {
     }
     setIsUploading(false)
   }
-  
+
   let dropZoneMessage = 'Drag a profile photo here'
   if (isUploading) {
     dropZoneMessage = 'Uploading...'
@@ -120,15 +117,6 @@ export function EditUser() {
               name="email"
               placeholder="Email Address"
               value={updatedUser.email}
-              onChange={handleStringFieldChange}
-            />
-          </p>
-          <p>
-            <label>Password:</label>
-            <input
-              name="password"
-              placeholder="Password"
-              value={updatedUser.password}
               onChange={handleStringFieldChange}
             />
           </p>
@@ -173,7 +161,6 @@ export function EditUser() {
             </select>
           </p>
 
-
           <p>
             <label>Rating:</label>
             <input
@@ -183,18 +170,18 @@ export function EditUser() {
               value={updatedUser.rating}
               onChange={handleStringFieldChange}
             />
-          {updatedUser.photoURL ? (
-            <p>
-              <img alt="User Photo" width={200} src={updatedUser.photoURL} />
-            </p>
-          ) : null}
+            {updatedUser.photoURL ? (
+              <p>
+                <img alt="User Photo" width={200} src={updatedUser.photoURL} />
+              </p>
+            ) : null}
 
-          <div className="fileZone">
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              {dropZoneMessage}
+            <div className="fileZone">
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {dropZoneMessage}
+              </div>
             </div>
-          </div>
           </p>
 
           <p>
