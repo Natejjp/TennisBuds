@@ -42,7 +42,9 @@ export function UpdateMatch() {
     setMatch(newerChallenge)
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(event) {
+    event.preventDefault()
+
     const response = await fetch(`/api/Challenges/${match_id}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
@@ -68,7 +70,7 @@ export function UpdateMatch() {
       <main className="updateContainer">
         <h1 className="titleUpdate">Update Match</h1>
         <section className="updateMenu">
-          <form>
+          <form onSubmit={handleSubmit}>
             <ul>
               <p>
                 <label>Outcome:</label>
@@ -140,9 +142,7 @@ export function UpdateMatch() {
               </li>
             </ul>
             <ul className="joinNow">
-              <button className="signInButton" onClick={handleSubmit}>
-                Submit
-              </button>
+              <button className="signInButton">Submit</button>
               <button className="deleteButton" onClick={handleDelete}>
                 Delete
               </button>
