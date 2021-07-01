@@ -20,16 +20,19 @@ export function UpdateMatch() {
 
   const { match_id } = useParams()
 
-  useEffect(function () {
-    async function loadMatch() {
-      const response = await fetch(`api/Challenges/${match_id}`)
-      if (response.ok) {
-        const json = await response.json()
-        setMatch(json)
+  useEffect(
+    function () {
+      async function loadMatch() {
+        const response = await fetch(`api/Challenges/${match_id}`)
+        if (response.ok) {
+          const json = await response.json()
+          setMatch(json)
+        }
       }
-    }
-    loadMatch()
-  }, [])
+      loadMatch()
+    },
+    [match_id]
+  )
 
   function handleUpdate(event) {
     const value = event.target.value

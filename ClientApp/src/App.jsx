@@ -58,14 +58,15 @@ export function App() {
               )}
               {isLoggedIn() && user.photoURL ? (
                 <Link to={`/profile/${user.id}`}>
-                  <li className="avatar">
+                  <div className="avatar">
                     <img
                       className="avatarPic"
                       src={user.photoURL}
                       alt={`${user.fullName}'s Avatar`}
                       height="50"
+                      width="50"
                     />
-                  </li>
+                  </div>
                 </Link>
               ) : null}
 

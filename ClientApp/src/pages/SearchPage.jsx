@@ -59,6 +59,7 @@ export function SearchPage() {
                   src={user.photoURL}
                   alt={`${user.fullName}'s Avatar`}
                   height="100"
+                  width="100"
                 />
               </p>
               <h3>{user.name}</h3>

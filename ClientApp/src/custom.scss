@@ -135,6 +135,7 @@ header .avatarPic {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
 }
 
 .homeBottom li {
@@ -200,6 +201,18 @@ header .avatarPic {
 
 .joinNow {
   display: flex;
+}
+
+.subTitleHome {
+  font-size: 45px;
+}
+
+.about {
+  margin-top: 2rem;
+}
+
+.about p {
+  margin-top: 0;
 }
 //Search Page--------------------------------------
 ul {

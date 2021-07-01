@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getUser, isLoggedIn } from '../auth'
+import { getUser } from '../auth'
 import swords from '../images/swords.png'
 import shield from '../images/shield.png'
 
@@ -98,7 +98,7 @@ export function Profile() {
                 </p>
                 <p>Result: {incomingChallenge.outcome}</p>
                 <p>
-                  Score: {incomingChallenge.firstSet}{' '}
+                  Score: {incomingChallenge.firstSet}
                   {incomingChallenge.secondSet} {incomingChallenge.thirdSet}{' '}
                   {incomingChallenge.fourthSet} {incomingChallenge.fifthSet}
                 </p>

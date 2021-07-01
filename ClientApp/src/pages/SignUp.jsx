@@ -42,7 +42,7 @@ export function SignUp() {
     if (apiResponse.status === 400) {
       setErrorMessage(Object.values(apiResponse.errors).join(' '))
     } else {
-      history.push('/')
+      history.push('/homepage')
     }
   }
 

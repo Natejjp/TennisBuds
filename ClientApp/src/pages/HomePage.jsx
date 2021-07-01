@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import lightningthree from '../images/lightningthree.png'
 import tennisballtwo from '../images/tennisballtwo.png'
-import TennisStockPic from '../images/TennisStockPic.jpg'
 import homeOne from '../images/homeOne.jpeg'
 import homeTwo from '../images/homeTwo.jpeg'
 import homeFive from '../images/homeFive.jpeg'
@@ -40,8 +39,8 @@ export function HomePage() {
               </Link>
             </div>
           </li>
-          <li>
-            <h3>What is Zip Tennis?</h3>
+          <li className="about">
+            <h3 className="subTitleHome">What is Zip Tennis?</h3>
             <p>
               Zip Tennis is about connecting tennis players in search for a
               quick match using a general zip code search. Players can view
